@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<h1 class="headText">Muslim Way of Life ครั้งที่ 1</h1>
+		</div>
+		<div class="inputNumZone" style="display: inline-block;">
+			สุ่ม <input type="text" name="numRandom" value="10" id="inputNum" size="5" style="text-align: center;"> รางวัล
+			
+		</div>
+		<div>
+			<button style="border-radius: 3px; margin: 25px;" id="btn">เริ่ม</button>
+		</div>
+		<div id='test'>
+			
+		</div>
+	</div>
+</body>
+
+	<script type="text/javascript">
+
+		var btn = document.getElementById('btn');
+		var n = document.getElementById('inputNum');
+		var unorderLi = document.getElementById('test');
+        
+		var x = ['002','003','021','554','234','234'];
+
+
+		// var x = ['007','008','00B','00C','011']];
+
+		btn.onclick = () => {
+
+			removeAllChild(unorderLi);
+
+			let numGift = parseInt(n.value);
+			let recieved = [];
+			var r;
+			
+			// console.log('x = ' + x);
+
+			for(var i = 0;i < numGift ;i++)
+			{
+				if(x.length<=0)
+					break;
+				r = Math.floor((Math.random() * x.length));
+				console.log('r = ' + r + ' len = ' + x.length);
+				let gift = 'M0' + x[r];
+				recieved.push(gift);
+				x.splice(r,1);
+				var li = document.createElement("P");
+				li.innerHTML = gift;
+				unorderLi.appendChild(li);
+			}
+			var str = 'var x = [';
+			for(var i = 0; i < x.length ; i++)
+			{
+				str = str + "'" + x[i] + "'";
+				if(i == x.length-1)
+					str = str+"]";
+				else
+					str = str+",";
+			}
+			str = str + ';'
+			console.log(str);
+		}
+
+		function removeAllChild(elem)
+		{
+			while(elem.firstChild)
+			{
+				elem.removeChild(elem.firstChild);
+			}
+		}
+
+	</script>
+</html>
+<!-- 
+var x = ['qwe','qwe','qwewe']
+
+var x = [1,2,3,4,5,6,7,8,9,10,]; -->
+
